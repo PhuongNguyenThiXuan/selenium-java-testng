@@ -14,6 +14,7 @@ import java.util.Queue;
 import java.util.Set;
 
 public class Topic_01_DataType {
+    /*
     // Bài toán quản ly 1 công ty về IT
     // Thông tin về công ty: Tên/ Địa chỉ/ MST
     // Có bao nhiêu phòng ban
@@ -35,6 +36,7 @@ public class Topic_01_DataType {
     // Điểm số học sinh/ sinh viên
     String schoolName;
     float score;
+    char grade = 'B';
 
 
     //Test Exam
@@ -68,11 +70,11 @@ public class Topic_01_DataType {
     byte bNum = 1;
     short sNum = 32767;
     int iNum = 2147483647;
-    long lNum = 999999999;
+    long lNum = 999999999L;
 
     //Kiểu số thực (float, double)
     float fNum = 26.8f;
-    double dNum = 19.9f;
+    double dNum = 19.9d;
 
 
 
@@ -103,6 +105,20 @@ public class Topic_01_DataType {
     // Collection
     List<WebElement> textboxes = driver.findElements(By.cssSelector(""));
     ArrayList<String> studentCity = new ArrayList<>();
+*/
+
+    @Test
+    public void Topic_01_DataType(){
+        float f1 = 35e3f;
+        double d1 = 12E4d;
+        System.out.println(f1);
+        System.out.println(d1);
+
+        boolean isJavaFun = true;
+        boolean isFishTasty = false;
+        System.out.println(isJavaFun);     // Outputs true
+        System.out.println(isFishTasty);
+    }
 
 
 
