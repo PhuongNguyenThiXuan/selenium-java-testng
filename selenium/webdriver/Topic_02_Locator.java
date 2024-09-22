@@ -107,24 +107,24 @@ public class Topic_02_Locator {
     public void TC_07_find_by_cssSelector(){
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
         //Search
-        driver.findElements(By.cssSelector("input[placeholder=\"Tìm khóa học\"]"));
+        driver.findElements(By.cssSelector("input[placeholder='Tìm khóa học']"));
         //Register
-        driver.findElements(By.cssSelector("span[class=\"box-item-login\"]"));
+        driver.findElements(By.cssSelector("span[class='box-item-login']"));
         //Login
-        driver.findElements(By.cssSelector("span[class=\"box-item-login bor\"]"));
+        driver.findElements(By.cssSelector("span[class='box-item-login bor']"));
         //Register new account
-        driver.findElements(By.cssSelector("input[id=\"txtFirstname\"]"));
-        driver.findElements(By.cssSelector("input[id=\"txtEmail\"]"));
-        driver.findElements(By.cssSelector("input[id=\"txtCEmail\"]"));
-        driver.findElements(By.cssSelector("input[id=\"txtPassword\"]"));
-        driver.findElements(By.cssSelector("input[name=\"txtCPassword\"]"));
-        driver.findElements(By.cssSelector("input[type=\"number\"]"));
+        driver.findElements(By.cssSelector("input[id='txtFirstname']"));
+        driver.findElements(By.cssSelector("input[id='txtEmail']"));
+        driver.findElements(By.cssSelector("input[id='txtCEmail']"));
+        driver.findElements(By.cssSelector("input[id='txtPassword']"));
+        driver.findElements(By.cssSelector("input[name='txtCPassword']"));
+        driver.findElements(By.cssSelector("input[type='number']"));
         //I agree
-        driver.findElements(By.cssSelector("input[class=\"marleft0\"]"));
+        driver.findElements(By.cssSelector("input[class='marleft0']"));
         //Registration
-        driver.findElements(By.cssSelector("button[class=\"btn_pink_sm fs16\"]"));
+        driver.findElements(By.cssSelector("button[class='btn_pink_sm fs16']"));
         //Register Now
-        driver.findElements(By.cssSelector("button[onclick=\"showDangky();\"]"));
+        driver.findElements(By.cssSelector("button[onclick='showDangky();']"));
     }
 
 
@@ -132,28 +132,28 @@ public class Topic_02_Locator {
     public void TC_08_find_by_xpath(){
         driver.get("https://alada.vn/tai-khoan/dang-ky.html");
         //Search
-        driver.findElements(By.xpath("//input[@placeholder=\"Tìm khóa học\"]"));
+        driver.findElements(By.xpath("//input[@placeholder='Tìm khóa học']"));
         //Register
-        driver.findElements(By.xpath("//span[@class=\"box-item-login\"]"));
+        driver.findElements(By.xpath("//span[@class='box-item-login']"));
         //Login
-        driver.findElements(By.xpath("//span[@class=\"box-item-login bor\"]"));
+        driver.findElements(By.xpath("//span[@class='box-item-login bor']"));
         //Register new account
-        driver.findElements(By.xpath("//input[@id=\"txtFirstname\"]"));
-        driver.findElements(By.xpath("//input[@id=\"txtEmail\"]"));
-        driver.findElements(By.xpath("//input[@id=\"txtCEmail\"]"));
-        driver.findElements(By.xpath("//input[@id=\"txtPassword\"]"));
-        driver.findElements(By.xpath("//input[@name=\"txtCPassword\"]"));
-        driver.findElements(By.xpath("//input[@type=\"number\"]"));
+        driver.findElements(By.xpath("//input[@id='txtFirstname']"));
+        driver.findElements(By.xpath("//input[@id='txtEmail']"));
+        driver.findElements(By.xpath("//input[@id='txtCEmail']"));
+        driver.findElements(By.xpath("//input[@id='txtPassword']"));
+        driver.findElements(By.xpath("//input[@name='txtCPassword']"));
+        driver.findElements(By.xpath("//input[@type='number']"));
         //I agree
-        driver.findElements(By.xpath("//input[@class=\"marleft0\"]"));
+        driver.findElements(By.xpath("//input[@class='marleft0']"));
 
-        int linkSize = driver.findElements(By.xpath("//a[@href=\"https://alada.vn/tai-khoan/dang-ky.html\"]")).size();
+        int linkSize = driver.findElements(By.xpath("//a[@href='https://alada.vn/tai-khoan/dang-ky.html']")).size();
         System.out.println("linkSize: " + linkSize);
 
         //Registration
-        driver.findElements(By.xpath("//button[@class=\"btn_pink_sm fs16\"]"));
+        driver.findElements(By.xpath("//button[@class='btn_pink_sm fs16']"));
         //Register Now
-        driver.findElements(By.xpath("//button[@onclick=\"showDangky();\"]"));
+        driver.findElements(By.xpath("//button[@onclick='showDangky();']"));
 
     }
 
