@@ -25,23 +25,23 @@ public class Topic_03_Relative_Locator {
         driver.get("https://demo.nopcommerce.com/register?returnUrl=%2F");
 
         //information
-        driver.findElements(By.xpath("//span[@class='male']"));
-        driver.findElements(By.xpath("//span[@class='female']"));
-        driver.findElements(By.xpath("//input[@id='FirstName']"));
-        driver.findElements(By.xpath("//input[@id='LastName']"));
-        driver.findElements(By.xpath("//select[@name='DateOfBirthDay']"));
-        driver.findElements(By.xpath("//select[@name='DateOfBirthMonth']"));
-        driver.findElements(By.xpath("//select[@name='DateOfBirthYear']"));
-        driver.findElements(By.xpath("//input[@name='Email']"));
+        driver.findElement(By.xpath("//span[@class='male']"));
+        driver.findElement(By.xpath("//span[@class='female']"));
+        driver.findElement(By.xpath("//input[@id='FirstName']"));
+        driver.findElement(By.xpath("//input[@id='LastName']"));
+        driver.findElement(By.xpath("//select[@name='DateOfBirthDay']"));
+        driver.findElement(By.xpath("//select[@name='DateOfBirthMonth']"));
+        driver.findElement(By.xpath("//select[@name='DateOfBirthYear']"));
+        driver.findElement(By.xpath("//input[@name='Email']"));
 
-        driver.findElements(By.xpath("//input[@name='Company']"));
+        driver.findElement(By.xpath("//input[@name='Company']"));
 
-        driver.findElements(By.xpath("//input[@id='Newsletter']"));
+        driver.findElement(By.xpath("//input[@id='Newsletter']"));
 
-        driver.findElements(By.xpath("//input[@id='Password']"));
-        driver.findElements(By.xpath("//input[@id='ConfirmPassword']"));
+        driver.findElement(By.xpath("//input[@id='Password']"));
+        driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
 
-        driver.findElements(By.xpath("//button[@id='register-button']"));
+        driver.findElement(By.xpath("//button[@id='register-button']"));
 
     }
 
