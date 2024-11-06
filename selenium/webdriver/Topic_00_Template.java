@@ -11,11 +11,12 @@ import java.time.Duration;
 public class Topic_00_Template {
     WebDriver driver;
 
-
     @BeforeClass
     public void beforeClass(){
         driver = new FirefoxDriver();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().window().maximize();
     }
 
     @Test
