@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,7 +16,7 @@ public class Topic_08_WebBrowser_Element {
 
     @BeforeClass
     public void beforeClass(){
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
@@ -27,10 +28,12 @@ public class Topic_08_WebBrowser_Element {
         //1. Click My Account at footer
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         //2. Get URL
+        Assert.assertEquals(driver.getCurrentUrl(),"https://live.techpanda.org/index.php/customer/account/login/");
         driver.getCurrentUrl().equals("https://live.techpanda.org/index.php/customer/account/login/");
         //3. Click Create An Account
         driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
         //4. Get URL
+        Assert.assertEquals(driver.getCurrentUrl(),"https://live.techpanda.org/index.php/customer/account/create/");
         driver.getCurrentUrl().equals("https://live.techpanda.org/index.php/customer/account/create/");
     }
 
@@ -41,10 +44,12 @@ public class Topic_08_WebBrowser_Element {
         //1. Click My Account at footer
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         //2. Get Title
+        Assert.assertEquals(driver.getTitle(),"Customer Login");
         driver.getTitle().equals("Customer Login");
         //3. Click Create An Account
         driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
         //4. Get Title
+        Assert.assertEquals(driver.getTitle(),"Create New Customer Account");
         driver.getTitle().equals("Create New Customer Account");
 
     }
@@ -57,14 +62,17 @@ public class Topic_08_WebBrowser_Element {
         //2. Click Create An Account
         driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
         //3. Verify url current page
+        Assert.assertEquals(driver.getCurrentUrl(),"https://live.techpanda.org/index.php/customer/account/create/");
         driver.getCurrentUrl().equals("https://live.techpanda.org/index.php/customer/account/create/");
         //4. Back to login page
         driver.navigate().back();
         //5. Verify url current page
+        Assert.assertEquals(driver.getCurrentUrl(),"https://live.techpanda.org/index.php/customer/account/login/");
         driver.getCurrentUrl().equals("https://live.techpanda.org/index.php/customer/account/login/");
         //6. Forward to register
         driver.navigate().forward();
         //7. Verify title
+        Assert.assertEquals(driver.getTitle(),"Create New Customer Account");
         driver.getTitle().equals("Create New Customer Account");
     }
 
@@ -74,10 +82,12 @@ public class Topic_08_WebBrowser_Element {
         //1. Click My Account at footer
         driver.findElement(By.cssSelector("div.footer a[title='My Account']")).click();
         //2. Get PageSource
+        Assert.assertFalse(Boolean.parseBoolean(driver.getTitle()),"Login or Create an Account");
         driver.getPageSource().equals("Login or Create an Account");
         //3. Click Create An Account
         driver.findElement(By.cssSelector("a[title='Create an Account']")).click();
         //4. Get PageSource
+        Assert.assertFalse(Boolean.parseBoolean(driver.getTitle()),"Create an Account");
         driver.getPageSource().equals("Create an Account");
     }
 
