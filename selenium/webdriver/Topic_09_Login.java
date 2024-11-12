@@ -43,7 +43,7 @@ public class Topic_09_Login {
 
     @Test
     public void TC_02_Login_With_Invalid_Email(){
-        driver.get("http://live.techpanda.org/");
+        driver.get("https://live.techpanda.org/");
 
         driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']")).click();
 
@@ -94,7 +94,7 @@ public class Topic_09_Login {
     }
 
 
-        @AfterClass
+    @AfterClass
     public void afterClass(){
         driver.quit();
     }
