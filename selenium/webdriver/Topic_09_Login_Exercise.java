@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Topic_09_Login {
+public class Topic_09_Login_Exercise {
     WebDriver driver;
 
     @BeforeClass
