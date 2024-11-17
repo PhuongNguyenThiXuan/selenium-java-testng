@@ -128,7 +128,6 @@ public class Topic_10_TextBox_TextArea {
 
         //9. Click Add in "Assigned Immigration Records" section
         driver.findElement(By.xpath("//h6[contains(string(),'Assigned Immigration Records')]//following-sibling::button")).click();
-        driver.findElement(By.xpath("//h6[contains(string(),'Assigned Immigration Records')]//following-sibling::button")).click();
 
         //10. Input data for Number/ Comments then click Save
         driver.findElement(By.xpath("//label[contains(string(),'Number')]//parent::div//following-sibling::div/input")).sendKeys(number);
