@@ -37,7 +37,7 @@ public class Topic_10_TextBox_TextArea {
         String emailAddress = "pngtest" + new Random().nextInt(9999) + "@yopmail.com";
         String password = "123456a@A";
         String confirmation = "123456a@A";
-        String thoughts = "This is a test\rThis is a test\rThis is a test";
+        String thoughts = "This is a test\nThis is a test\nThis is a test";
         String review = "Good";
         String nickname = "Automation";
 
@@ -73,6 +73,90 @@ public class Topic_10_TextBox_TextArea {
         Assert.assertEquals(driver.findElement(By.cssSelector("ul[class='messages']")).getText(),"Your review has been accepted for moderation.");
     }
 
+
+    @Test
+    public void TC_02() throws InterruptedException {
+        String firstName = "Jessica";
+        String lastName = "Nguyen";
+
+        String number = "111-222-333-4444";
+        String comments = "This is a test\nThis is a test";
+
+        //1. Get url
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        driver.findElement(By.cssSelector("input[name='username']")).sendKeys("Admin");
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys("admin123");
+        driver.findElement(By.xpath("//button[contains(string(),'Login')]")).click();
+        Thread.sleep(3000);
+
+        //3. Open PIM
+        driver.findElement(By.xpath("//span[contains(string(),'PIM')]//parent::a")).click();
+        Thread.sleep(3000);
+
+        //4. Open Add Employee
+        driver.findElement(By.xpath("//a[contains(string(),'Add Employee')]//parent::li")).click();
+        Thread.sleep(3000);
+
+        //5. Input valid data for First Name/ Last Name
+        String employeeID = driver.findElement(By.xpath("//label[contains(string(),'Employee Id')]//parent::div//following-sibling::div/input")).getText();
+        String userName = "Jessica" + new Random().nextInt(9999);
+        String password = "123456a@A";
+        String confirmPassword = "123456a@A";
+
+        driver.findElement(By.cssSelector("input[name='firstName']")).sendKeys(firstName);
+        driver.findElement(By.cssSelector("input[name='lastName']")).sendKeys(lastName);
+        driver.findElement(By.xpath("//p[contains(string(),'Create Login Details')]//following-sibling::div//span")).click();
+        driver.findElement(By.xpath("//label[contains(string(),'Username')]//parent::div/following-sibling::div/input")).sendKeys(userName);
+        System.out.println(userName);
+        driver.findElement(By.xpath("//label[text()='Password']//parent::div/following-sibling::div/input")).sendKeys(password);
+        driver.findElement(By.xpath("//label[contains(string(),'Confirm Password')]//parent::div/following-sibling::div/input")).sendKeys(confirmPassword);
+
+        //6. Click Save
+        driver.findElement(By.xpath("//button[contains(string(),' Save ')]")).click();
+        Thread.sleep(5000);
+
+        //7. Verify inputted data
+        driver.findElement(By.xpath("//a[contains(string(),'Personal Details')]")).click();
+        Thread.sleep(10000);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getAttribute("value"),firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getAttribute("value"),lastName);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[contains(string(),'Employee Id')]//parent::div//following-sibling::div/input")).getText(),employeeID);
+
+        //8. Click Immigration
+        driver.findElement(By.xpath("//a[contains(string(),'Immigration')]")).click();
+        Thread.sleep(3000);
+
+        //9. Click Add in "Assigned Immigration Records" section
+        driver.findElement(By.xpath("//h6[contains(string(),'Assigned Immigration Records')]//following-sibling::button")).click();
+        driver.findElement(By.xpath("//h6[contains(string(),'Assigned Immigration Records')]//following-sibling::button")).click();
+
+        //10. Input data for Number/ Comments then click Save
+        driver.findElement(By.xpath("//label[contains(string(),'Number')]//parent::div//following-sibling::div/input")).sendKeys(number);
+        driver.findElement(By.xpath("//label[contains(string(),'Comments')]//parent::div//following-sibling::div/textarea")).sendKeys(comments);
+        driver.findElement(By.xpath("//button[contains(string(),' Save ')]")).click();
+        Thread.sleep(3000);
+
+        //11. Click Pencil icon
+        driver.findElement(By.xpath("//div[contains(text(),'" + number + "')]//parent::div//parent::div[@role='row']//following-sibling::div//button/i[contains(@class,'bi-pencil-fill')]")).click();
+        Thread.sleep(10000);
+
+        //12. Verify inputted data
+        Assert.assertEquals(driver.findElement(By.xpath("//label[contains(string(),'Number')]//parent::div//following-sibling::div/input")).getAttribute("value"),number);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[contains(string(),'Comments')]//parent::div//following-sibling::div/textarea")).getAttribute("value"),comments);
+
+        //13. Click on User then select Logout
+        driver.findElement(By.xpath("//span[contains(@class,'oxd-userdropdown-tab')]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[contains(string(),'Logout')]")).click();
+        Thread.sleep(3000);
+
+        //14. Login with account that have just created
+        driver.findElement(By.cssSelector("input[name='username']")).sendKeys(userName);
+        System.out.println(userName);
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
+        driver.findElement(By.xpath("//button[contains(string(),'Login')]")).click();
+
+    }
     @AfterClass
     public void afterClass(){
         driver.quit();
