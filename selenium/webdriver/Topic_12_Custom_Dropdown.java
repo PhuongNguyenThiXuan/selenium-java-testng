@@ -3,6 +3,7 @@ package webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -64,6 +65,26 @@ public class Topic_12_Custom_Dropdown {
         }
     }
 
+    private void inputThenSelectItemInDropDown(String dropdownName, String ListValue, String value) throws InterruptedException {
+        driver.findElement(By.cssSelector(dropdownName)).click();
+        Thread.sleep(2000);
+
+        driver.findElement(By.cssSelector(dropdownName)).clear();
+        driver.findElement(By.cssSelector(dropdownName)).sendKeys(value);
+
+        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions
+                .presenceOfAllElementsLocatedBy(By.cssSelector(ListValue)));
+
+        List<WebElement> allItems = driver.findElements(By.cssSelector(ListValue));
+
+        for (WebElement item : allItems){
+            if(item.getText().equals(value)){
+                item.click();
+                break;
+            }
+        }
+    }
+
 
     @Test
     public void TC_02_ReactJS() throws InterruptedException {
@@ -95,6 +116,60 @@ public class Topic_12_Custom_Dropdown {
     }
     
 
+    @Test
+    public void TC_04_Editable()throws InterruptedException{
+        //1. Access url
+        driver.get("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/");
+
+        inputThenSelectItemInDropDown("input.search","div.item span","Angola");
+        verifyItemInDropDownList("div.divider","Angola");
+
+        inputThenSelectItemInDropDown("input.search","div.item span","Belgium");
+        verifyItemInDropDownList("div.divider","Belgium");
+
+        inputThenSelectItemInDropDown("input.search","div.item span","American Samoa");
+        verifyItemInDropDownList("div.divider","American Samoa");
+    }
+
+    @Test
+    public void TC_04_Editable_01()throws InterruptedException{
+        driver.get("https://id5.cloud.huawei.com/CAS/portal/userRegister/regbyemail.html");
+
+        selectItemInHuaweiDropdown("div[ht='input_emailregister_dropdown']","input[ht='input_emailregister_search']",
+                "ul.hwid-alpla-list span","Algeria");
+        verifyItemInDropDownList("div[ht='input_emailregister_dropdown'] span[class='hwid-select-text']","Algeria");
+
+        selectItemInHuaweiDropdown("div[ht='input_emailregister_dropdown']","input[ht='input_emailregister_search']",
+                "ul.hwid-alpla-list span","Hong Kong (China)");
+        verifyItemInDropDownList("div[ht='input_emailregister_dropdown'] span[class='hwid-select-text']","Hong Kong (China)");
+
+        selectItemInHuaweiDropdown("div[ht='input_emailregister_dropdown']","input[ht='input_emailregister_search']",
+                "ul.hwid-alpla-list span","Russia");
+        verifyItemInDropDownList("div[ht='input_emailregister_dropdown'] span[class='hwid-select-text']","Russia");
+    }
+
+    private void selectItemInHuaweiDropdown(String dropdownName, String searchBox, String ListValue, String value) throws InterruptedException {
+        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions
+                .elementToBeClickable(By.cssSelector(dropdownName)));
+        driver.findElement(By.cssSelector(dropdownName)).click();
+        Thread.sleep(1000);
+
+        driver.findElement(By.cssSelector(searchBox)).clear();
+        driver.findElement(By.cssSelector(searchBox)).sendKeys(value);
+        Thread.sleep(1500);
+
+        new WebDriverWait(driver,Duration.ofSeconds(15)).until(ExpectedConditions
+                .presenceOfAllElementsLocatedBy(By.cssSelector(ListValue)));
+
+        List<WebElement> allItems = driver.findElements(By.cssSelector(ListValue));
+
+        for (WebElement item : allItems){
+            if(item.getText().equals(value)){
+                item.click();
+                break;
+            }
+        }
+    }
 
     @AfterClass
     public void afterClass(){
