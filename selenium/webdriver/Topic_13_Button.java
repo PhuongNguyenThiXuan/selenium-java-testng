@@ -56,6 +56,6 @@ public class Topic_13_Button {
 
     @AfterClass
     public void afterClass(){
-        //driver.quit();
+        driver.quit();
     }
 }
