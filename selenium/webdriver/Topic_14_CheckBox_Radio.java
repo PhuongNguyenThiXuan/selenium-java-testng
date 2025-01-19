@@ -32,7 +32,8 @@ public class Topic_14_CheckBox_Radio {
 
         By dualZone = By.xpath("//label[text()='Dual-zone air conditioning']/preceding-sibling::span/input");
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.cssSelector("div#demo-runner")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                driver.findElement(By.cssSelector("div#demo-runner")));
         Thread.sleep(2000);
 
         //2. Select checkbox: "Dual-zone air conditioning"
