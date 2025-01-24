@@ -19,8 +19,8 @@ public class Topic_18_Fixed_Popup {
 
     @BeforeClass
     public void beforeClass(){
-        //driver = new FirefoxDriver();
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
@@ -29,6 +29,7 @@ public class Topic_18_Fixed_Popup {
     @Test
     public void TC_01_NgoaiNgu24h_Fixed_Not_Found_In_DOM() throws InterruptedException {
         driver.get("https://ngoaingu24h.vn/");
+        Thread.sleep(2000);
         //1. Click Login button
         driver.findElement(By.xpath("//button[text()='Đăng nhập']")).click();
         //2. Verify Login popup is displayed
@@ -65,14 +66,12 @@ public class Topic_18_Fixed_Popup {
     }
 
     @Test
-    public void TC_03(){
+    public void TC_03_Tiki() throws InterruptedException {
         driver.get("https://tiki.vn/");
-        //driver.switchTo().alert().accept();
-        new WebDriverWait(driver,Duration.ofSeconds(30)).until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//img[@alt='close-icon']")));
         //1. Click on Login/ SignIn button
-        driver.findElement(By.xpath("//span[text()='Tài khoản']")).click();
-        By loginDialog = By.cssSelector("div.styles__Root-sc-2hr4xa-0");
+        driver.findElement(By.cssSelector("div[data-view-id='header_header_account_container']")).click();
+        Thread.sleep(2000);
+        By loginDialog = By.cssSelector("div.ReactModalPortal div[role='dialog']");
         //2. Verify popup is displayed
         Assert.assertTrue(driver.findElement(loginDialog).isDisplayed());
         //3. Click on link: "Login with email"
@@ -80,12 +79,13 @@ public class Topic_18_Fixed_Popup {
         //4. Do not input information, click on Login button
         driver.findElement(By.xpath("//button[text()='Đăng nhập']")).click();
         //5. Verify the error message displayed under each field
-        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='email']//parent::div/following-sibling::span[1]")),
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='email']//parent::div/following-sibling::span[1]")).getText(),
                 "Email không được để trống");
-        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='password']//parent::div/following-sibling::span[1]")),
+        Assert.assertEquals(driver.findElement(By.xpath("//input[@type='password']//parent::div/following-sibling::span[1]")).getText(),
                 "Mật khẩu không được để trống");
         //6. Close dialog
-        driver.findElement(By.cssSelector("button.btn-close")).click();
+        driver.findElement(By.cssSelector("div.ReactModalPortal button.btn-close")).click();
+        Thread.sleep(2000);
         //7. Verify dialog is disappeared
         Assert.assertEquals(driver.findElements(loginDialog).size(),0);
 
@@ -93,6 +93,6 @@ public class Topic_18_Fixed_Popup {
 
     @AfterClass
     public void afterClass(){
-        driver.quit();
+        //driver.quit();
     }
 }
