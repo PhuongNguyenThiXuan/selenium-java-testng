@@ -195,6 +195,6 @@ public class Topic_21_Window {
 
     @AfterClass
     public void afterClass(){
-        //driver.quit();
+        driver.quit();
     }
 }
