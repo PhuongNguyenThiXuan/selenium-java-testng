@@ -59,8 +59,8 @@ public class Topic_17_Action_PI {
 
         //Actual Number: 1 3 6 11
         List<String> actualNumber = new ArrayList<String>();
-        actualNumber.add("1");
         actualNumber.add("3");
+        actualNumber.add("1");
         actualNumber.add("6");
         actualNumber.add("11");
 
@@ -82,7 +82,48 @@ public class Topic_17_Action_PI {
             expectedNumber.add(number.getText());
         }
         Assert.assertEquals(actualNumber,expectedNumber);
+    }
 
+    @Test
+    public void TC_0x_ClickAndHold_Random(){
+        driver.get("https://automationfc.github.io/jquery-selectable/");
+
+        List<WebElement> numbers = driver.findElements(By.cssSelector("ol#selectable>li"));
+
+        String osName = System.getProperty("os.name");
+        Keys keys = null;
+
+        if (osName.contains("Windows")){
+            keys = Keys.CONTROL;
+        }else {
+            keys = Keys.COMMAND;
+        }
+
+        //Actual Number: 1 3 6 11
+        List<String> actualNumber = new ArrayList<String>();
+        actualNumber.add("3");
+        actualNumber.add("1");
+        actualNumber.add("6");
+        actualNumber.add("11");
+
+        action.keyDown(keys).perform();
+        //1. Click and select random: 3, 1, 11, 6
+        action.click(numbers.get(2)).pause(Duration.ofSeconds(1))
+                .click(numbers.get(0)).pause(Duration.ofSeconds(1))
+                .click(numbers.get(10)).pause(Duration.ofSeconds(1))
+                .click(numbers.get(5)).pause(Duration.ofSeconds(1))
+                .perform();
+        action.keyUp(keys).perform();
+
+        //2. Verify the number selected is correctly
+        List<WebElement> selectedNumbers = driver.findElements(By.cssSelector("ol#selectable>li.ui-selected"));
+        Assert.assertEquals(selectedNumbers.size(),4);
+
+        List<String> expectedNumber = new ArrayList<String>();
+        for (WebElement number:selectedNumbers){
+            expectedNumber.add(number.getText());
+        }
+        Assert.assertTrue(expectedNumber.containsAll(actualNumber));
     }
 
     @Test
