@@ -94,7 +94,7 @@ public class Topic_24_Wait_PI_Element_Status {
         //3. Click close popup
         driver.findElement(By.cssSelector("button.btn-close")).click();
         //4. Verify phone element is invisible in html
-        explicitWait.until(ExpectedConditions.stalenessOf(phone));
+        explicitWait.until(ExpectedConditions.stalenessOf(phone)); //Bat buoc phai truyen element vao param
     }
 
     @AfterClass
