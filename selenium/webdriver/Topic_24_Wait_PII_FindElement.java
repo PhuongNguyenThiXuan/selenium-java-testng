@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class Topic_25_Wait_PII_FindElement {
+public class Topic_24_Wait_PII_FindElement {
     WebDriver driver;
 
     @BeforeClass
@@ -40,7 +40,7 @@ public class Topic_25_Wait_PII_FindElement {
 
 
 
-        //Tìm thấy 1 element => se dung lai ngay khi tim thay element
+        //Tìm thấy 1 element => se dung lai ngay khi tim thay element3.6.1-vn-android
 //        List<WebElement> elementList = driver.findElements(By.cssSelector("input#email"));
 //        System.out.println(elementList.size());
 
