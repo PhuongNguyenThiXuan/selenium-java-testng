@@ -17,88 +17,51 @@ public class Topic_24_Wait_PV_Explicit_I {
     WebDriver driver;
     WebDriverWait explicitWait;
 
-    By startButton = By.cssSelector("div#start button");
-    By loadingIcon = By.cssSelector("div#loading");
-    By helloText = By.cssSelector("div#finish>h4");
-
-
     @BeforeMethod
     public void beforeClass(){
         driver = new FirefoxDriver();
 
-        driver.manage().window().maximize();
-
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(description = "Thời gian Explicit bằng 0")
+    @Test
     public void TC_01() {
-        driver.get("https://automationfc.github.io/dynamic-loading/");
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(0));
+        //Chờ cho 1 alert được xuất hiện trong html + sau đó switch vào
+        explicitWait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
 
-        explicitWait.until(ExpectedConditions.elementToBeClickable(startButton));
-        driver.findElement(startButton).click();
+        //Element clickable (Button/ Check box/ Radio/ Link/ Image...)
+        explicitWait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("")));
+        driver.findElement(By.cssSelector("")).click();
 
-        //1. Cho cho step truoc hoan thanh (loading icon bien mat) - Khong quan tam step sau (Hello World text)
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIcon));
+        //Element visible (All elements)
+        //Get text/ get css/ attribute/ displayed...
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("")));
+        Assert.assertTrue(driver.findElement(By.cssSelector("")).isDisplayed());
 
+        //Element selected (Check box/ Radio..)
+        explicitWait.until(ExpectedConditions.elementToBeSelected(By.cssSelector("")));
+        Assert.assertTrue(driver.findElement(By.cssSelector("")).isSelected());
 
-        //2. Cho cho step sau xuat hien (Hello World text hien thi) - Khong quan tam step truoc (Loading icon)
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(helloText));
-        Assert.assertEquals(driver.findElement(helloText).getText(),"Hello World!");
-    }
+        //Invisible (All elements)
+        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("")));
+        Assert.assertFalse(driver.findElement(By.cssSelector("")).isSelected());
 
+        //Presence (All elements in html)
+        explicitWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("")));
 
-    @Test(description = "Thời gian Explicit ngắn hơn điều kiện xảy ra")
-    public void TC_02() {
-        driver.get("https://automationfc.github.io/dynamic-loading/");
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        //Element size
+        explicitWait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(""),9));
+        Assert.assertEquals(driver.findElement(By.cssSelector("")).getSize(),9);
 
-        explicitWait.until(ExpectedConditions.elementToBeClickable(startButton));
-        driver.findElement(startButton).click();
+        //Attribute
+        explicitWait.until(ExpectedConditions.attributeToBe(By.cssSelector(""),"value","Hello"));
+        Assert.assertEquals(driver.findElement(By.cssSelector("")).getAttribute("value"),"Hello");
 
-        //1. Cho cho step truoc hoan thanh (loading icon bien mat) - Khong quan tam step sau (Hello World text)
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIcon));
+        //Text
+        explicitWait.until(ExpectedConditions.textToBe(By.cssSelector(""),"Hello"));
+        Assert.assertEquals(driver.findElement(By.cssSelector("")).getText(),"Hello");
 
-
-        //2. Cho cho step sau xuat hien (Hello World text hien thi) - Khong quan tam step truoc (Loading icon)
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(helloText));
-        Assert.assertEquals(driver.findElement(helloText).getText(),"Hello World!");
-
-    }
-
-    @Test(description = "Thời gian Explicit bằng thời gian điều kiện xảy ra")
-    public void TC_03() {
-        driver.get("https://automationfc.github.io/dynamic-loading/");
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        explicitWait.until(ExpectedConditions.elementToBeClickable(startButton));
-        driver.findElement(startButton).click();
-
-        //1. Cho cho step truoc hoan thanh (loading icon bien mat) - Khong quan tam step sau (Hello World text)
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIcon));
-
-
-        //2. Cho cho step sau xuat hien (Hello World text hien thi) - Khong quan tam step truoc (Loading icon)
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(helloText));
-        Assert.assertEquals(driver.findElement(helloText).getText(),"Hello World!");
-
-    }
-
-    @Test(description = "Thời gian Explicit dài hơn thời gian điều kiện xảy ra")
-    public void TC_04() {
-        driver.get("https://automationfc.github.io/dynamic-loading/");
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-        explicitWait.until(ExpectedConditions.elementToBeClickable(startButton));
-        driver.findElement(startButton).click();
-
-        //1. Cho cho step truoc hoan thanh (loading icon bien mat) - Khong quan tam step sau (Hello World text)
-        explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIcon));
-
-
-        //2. Cho cho step sau xuat hien (Hello World text hien thi) - Khong quan tam step truoc (Loading icon)
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(helloText));
-        Assert.assertEquals(driver.findElement(helloText).getText(),"Hello World!");
     }
 
     @AfterMethod
