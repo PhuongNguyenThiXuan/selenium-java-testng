@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="UI Automation Testing" verbose="1" parallel="methods" thread-count="3">
+    <parameter name="environmentName" value="PROD"></parameter>
+
+    <test name="Run on FIREFOX">
+        <parameter  name="browser" value="Firefox"></parameter>
+        <classes>
+            <class name="basic.Topic_13_Parallel_Method"></class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Web Platform" verbose="1" parallel="tests" thread-count="3">
+
+    <parameter name="environmentName" value="PROD"></parameter>
+
+    <test name="Run on FIREFOX">
+        <parameter  name="browser" value="Firefox"></parameter>
+        <parameter  name="version" value="137"></parameter>
+        <classes>
+            <class name="platformWeb.Web_01_User"></class>
+            <class name="platformWeb.Web_02_Product"></class>
+        </classes>
+    </test>
+
+</suite>

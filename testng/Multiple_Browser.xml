@@ -1,14 +1,20 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="UI Automation Testing" verbose="1">
+<suite name="UI Automation Testing" verbose="1" parallel="tests" thread-count="3">
+    <!--
+     thread-count = 3 => chay song song 3 test cung luc
+     Run theo <classes>: Chọn class bất kì trong 1 package để chạy
+     Run theo <packages>: Chạy tất cả các class trong package này
+     -->
+
     <parameter name="environmentName" value="PROD"></parameter>
     <parameter name="platformName" value="MAC"></parameter>
 
-    <test name="Run on FIREFOX">
+    <!-- <test name="Run on FIREFOX">
         <parameter  name="browser" value="Firefox"></parameter>
-        <classes>
-            <class name="basic.Topic_09_Multiple_Browser"></class>
-        </classes>
+        <packages>
+            <package name="basic"></package>
+        </packages>
     </test>
 
     <test name="Run on CHROME">
@@ -28,7 +34,15 @@
     <test name="Run on SAFARI">
         <parameter  name="browser" value="Safari"></parameter>
         <classes>
-            <class name="basic.Topic_09_Multiple_Browser"></class>
+            <class name="basic.Topic_12_InvocationCount"></class>
         </classes>
     </test>
+    -->
+    <test name="Run on CHROME">
+        <parameter  name="browser" value="Chrome"></parameter>
+        <classes>
+            <class name="basic.Topic_12_InvocationCount"></class>
+        </classes>
+    </test>
+
 </suite>

@@ -1,19 +1,23 @@
-package testng;
+package basic;
 
+import listener.ReportTestNG;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.Random;
 
+@Listeners(ReportTestNG.class)
 public class Topic_12_InvocationCount {
     WebDriver driver;
     Random rand;
@@ -33,6 +37,7 @@ public class Topic_12_InvocationCount {
         password = "123456789";
 
         String path = projectPath + "/dataTest/user.properties";
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         outputStrem = new FileOutputStream(path);
     }
 
@@ -87,5 +92,9 @@ public class Topic_12_InvocationCount {
     public void afterClass() throws IOException {
         outputStrem.flush();
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }
